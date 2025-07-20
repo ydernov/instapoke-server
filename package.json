@@ -1,0 +1,12 @@
+{
+  "name": "instapoke-server",
+  "type": "module",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bun": "^1.2.19"
+  },
+  "scripts": {
+    "start": "bun run index.ts"
+  }
+}
