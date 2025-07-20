@@ -1,4 +1,11 @@
-import { POKEMON_URL, SERVER_PORT } from "@constants/paths";
+import {
+  POKEMON_URL,
+  PRELOAD_IMAGE_URL,
+  PRELOAD_IMAGES_DIR,
+  SERVER_PORT,
+} from "@constants/paths";
+import { file } from "bun";
+import { join } from "path";
 
 async function main() {
   const server = Bun.serve({
@@ -19,6 +26,19 @@ async function main() {
           return Response.json(
             `Response from ${url}, ${offset} ${limit} ${types} ${abilities} ${moves}`
           );
+        },
+      },
+      [PRELOAD_IMAGE_URL]: {
+        GET: async (req) => {
+          const { img } = req.params;
+          const filePath = join(PRELOAD_IMAGES_DIR, img);
+          const staticFile = file(filePath);
+          if (await staticFile.exists()) {
+            return new Response(staticFile);
+          } else {
+            console.warn(`  Static file not found: ${filePath}`);
+            return new Response("Static File Not Found", { status: 404 });
+          }
         },
       },
     },

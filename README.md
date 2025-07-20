@@ -8,8 +8,14 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To run the server:
 
 ```bash
-bun run index.ts
+bun run start
+```
+
+To create local data files:
+
+```bash
+bun run generate
 ```

@@ -15,7 +15,7 @@
         "noEmit": true,
         // Best practices
         "strict": true,
-        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
         "noFallthroughCasesInSwitch": true,
         "noUncheckedIndexedAccess": true,
         "noImplicitOverride": true,
@@ -38,7 +38,7 @@
     },
     "include": [
         "src/**/*.ts",
-        "global.d.ts"
+        "global.d.ts",
     ],
     "exclude": [
         "node_modules",
