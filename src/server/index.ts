@@ -9,6 +9,11 @@ import { file } from "bun";
 import { join } from "path";
 import { PokemonStore } from "./PokemonStore";
 
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "OPTIONS, GET",
+};
+
 async function main() {
   const pokemonStore = new PokemonStore();
   const jsonFilePath = join(LOCAL_DATA_DIR, "pokemon.json");
@@ -17,6 +22,7 @@ async function main() {
 
   const server = Bun.serve({
     port: SERVER_PORT,
+
     routes: {
       [POKEMON_URL]: {
         GET: async (req) => {
@@ -38,7 +44,9 @@ async function main() {
             moves,
           });
 
-          return Response.json(result);
+          return new Response(JSON.stringify(result), {
+            headers: CORS_HEADERS,
+          });
         },
       },
 

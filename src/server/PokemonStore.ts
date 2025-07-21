@@ -1,4 +1,6 @@
 import { existsSync } from "node:fs";
+import { join } from "path";
+import { PRELOAD_IMAGES_URL, SERVER_URL } from "../constants/paths";
 import type { Pokemon } from "../data_generation/createLocalPokemonData";
 
 export type FilteredPokemonResponse = {
@@ -53,6 +55,12 @@ export class PokemonStore {
     this.pokemonByMoves.clear();
 
     for (const pokemon of pokemonList) {
+      pokemon.smallImageURL = pokemon.smallImageURL
+        ? new URL(
+            join(PRELOAD_IMAGES_URL, pokemon.smallImageURL),
+            SERVER_URL
+          ).toString()
+        : null;
       this.pokemonById.set(pokemon.id, pokemon);
       this.allPokemonIds.push(pokemon.id);
 
