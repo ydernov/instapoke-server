@@ -61,6 +61,11 @@ export class PokemonStore {
             SERVER_URL
           ).toString()
         : null;
+
+      // deduping present for several pokemons; for now here, but should be in data generation/preparation
+      pokemon.moves = [...new Set(pokemon.moves)];
+      pokemon.abilities = [...new Set(pokemon.abilities)];
+
       this.pokemonById.set(pokemon.id, pokemon);
       this.allPokemonIds.push(pokemon.id);
 
