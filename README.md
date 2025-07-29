@@ -8,14 +8,16 @@ To install dependencies:
 bun install
 ```
 
+To create local data files - must be done before running the server:
+
+```bash
+bun run generate
+```
+
 To run the server:
 
 ```bash
 bun run start
 ```
 
-To create local data files:
 
-```bash
-bun run generate
-```
