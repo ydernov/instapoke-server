@@ -1,6 +1,6 @@
 # instapoke-server
 
-This is a backend for another repository [link_here]
+This is a backend for another repository - https://github.com/ydernov/instapoke-client
 
 To install dependencies:
 
